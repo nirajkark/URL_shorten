@@ -4,9 +4,9 @@ A modern, fast, and elegant URL shortening service built with FastAPI. ShortLink
 
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.95.0+-green.svg)](https://fastapi.tiangolo.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## ✨ Features
+
+## Features
 
 - **Instant URL Shortening**: Convert any long URL into a short, shareable link.
 - **User-friendly Web Interface**: Clean, responsive design for desktop and mobile.
@@ -16,9 +16,7 @@ A modern, fast, and elegant URL shortening service built with FastAPI. ShortLink
 - **Copy to Clipboard**: One-click copying of shortened URLs.
 - **Detailed Analytics**: View creation date and usage statistics for each URL.
 - **Base62 Encoding**: Industry-standard URL shortening algorithm for optimal link length.
-- **Custom Short URLs**: Specify a custom alias for your shortened URL.
-- **Expiration Dates**: Set an expiration date for shortened URLs.
-- **Error Handling**: Comprehensive validation and error messages for invalid inputs.
+
 
 ## 🛠️ Technologies
 
@@ -113,9 +111,7 @@ python main.py
 - **User Authentication**: Implement user accounts for managing URLs.
 - **Advanced Analytics**: Track IP addresses, user agents, and referral sources for clicks.
 
-## 📜 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 👨‍💻 Author
 
