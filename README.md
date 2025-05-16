@@ -38,5 +38,5 @@ A modern, fast, and elegant URL shortening service built with FastAPI. ShortLink
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/shortlink.git
-cd shortlink
+git clone https://github.com/nirajkark/URL_shorten.git
+cd URL_shorten
