@@ -18,14 +18,65 @@ A modern, fast, and elegant URL shortening service built with FastAPI. ShortLink
 - **Base62 Encoding**: Industry-standard URL shortening algorithm for optimal link length.
 
 
+# 🏗️ 12-Factor App Implementation
+
+This application follows the [12-Factor App](https://12factor.net/) methodology:
+
+1. **Codebase**: One codebase tracked in version control, many deploys
+   - Single repository with clear separation of code and configuration
+
+2. **Dependencies**: Explicitly declare and isolate dependencies
+   - All dependencies are declared in `requirements.txt` with specific versions
+
+3. **Config**: Store config in the environment
+   - All configuration is stored in environment variables
+   - Sample `.env.example` file provided for reference
+
+4. **Backing Services**: Treat backing services as attached resources
+   - Database connection is configured via environment variables
+   - Supports different database backends (SQLite, PostgreSQL)
+
+5. **Build, Release, Run**: Strictly separate build and run stages
+   - Docker build process separates these stages
+   - Docker Compose for orchestration
+
+6. **Processes**: Execute the app as one or more stateless processes
+   - Application is stateless and can be scaled horizontally
+   - All state is stored in the database
+
+7. **Port Binding**: Export services via port binding
+   - Application binds to a port specified in environment variables
+   - Easily configurable for different environments
+
+8. **Concurrency**: Scale out via the process model
+   - FastAPI's async support allows for concurrent request handling
+   - Can be scaled horizontally with multiple instances
+
+9. **Disposability**: Maximize robustness with fast startup and graceful shutdown
+   - Fast startup and shutdown hooks for clean resource management
+   - Proper database connection handling
+
+10. **Dev/Prod Parity**: Keep development, staging, and production as similar as possible
+    - Same codebase and dependencies across environments
+    - Environment-specific configuration via environment variables
+
+11. **Logs**: Treat logs as event streams
+    - Structured logging with timestamps and log levels
+    - Logs directed to stdout/stderr for collection by platform
+
+12. **Admin Processes**: Run admin/management tasks as one-off processes
+    - Admin endpoints for maintenance tasks
+    - Can be triggered via API calls
+
 ## 🛠️ Technologies
 
-- **FastAPI**: High-performance web framework for building APIs.
-- **Pydantic**: Data validation and settings management.
-- **Jinja2**: Template engine for the web interface.
-- **Uvicorn**: ASGI server for running the application.
-- **HTML/CSS/JavaScript**: Frontend interface.
-- **qrcode**: Library for generating QR codes.
+- **FastAPI**: High-performance web framework for building APIs
+- **SQLAlchemy**: SQL toolkit and ORM
+- **Databases**: Async database support
+- **Pydantic**: Data validation and settings management
+- **Jinja2**: Template engine for the web interface
+- **Uvicorn**: ASGI server for running the application
+- **Docker**: Containerization for consistent deployment
 
 ## 📋 Prerequisites
 
