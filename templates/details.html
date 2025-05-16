@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Details - URL Shortener</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>URL Details</h1>
+            <p>Information about your shortened URL</p>
+        </header>
+
+        <section class="url-details">
+            <div class="card">
+                <h2>URL Information</h2>
+                
+                <div class="detail-row">
+                    <span class="label">Short URL:</span>
+                    <span class="value">
+                        <a href="{{ url.short_url }}" target="_blank" class="short-url">
+                            {{ url.short_url }}
+                        </a>
+                        <button class="btn btn-small copy-btn" data-clipboard-text="{{ request.base_url }}{{ url.short_url[1:] }}">
+                            Copy
+                        </button>
+                    </span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="label">Original URL:</span>
+                    <span class="value">
+                        <a href="{{ url.target_url }}" target="_blank">
+                            {{ url.target_url }}
+                        </a>
+                    </span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="label">Created:</span>
+                    <span class="value">{{ url.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="label">Clicks:</span>
+                    <span class="value">{{ url.clicks }}</span>
+                </div>
+                
+                <div class="detail-row">
+                    <span class="label">ID:</span>
+                    <span class="value">{{ url.id }}</span>
+                </div>
+                
+                <div class="actions">
+                    <a href="/" class="btn">Back to Home</a>
+                    <form action="/delete/{{ url.id }}" method="post" class="inline-form">
+                        <button type="submit" class="btn btn-danger">Delete URL</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>QR Code</h2>
+                <div class="qr-code">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ request.base_url }}{{ url.short_url[1:] }}" alt="QR Code">
+                </div>
+                <p>Scan this QR code to access the shortened URL</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>Built with FastAPI | <a href="/docs" target="_blank">API Documentation</a></p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

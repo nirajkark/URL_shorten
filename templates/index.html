@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>URL Shortener</h1>
+            <p>Shorten your long URLs with ease</p>
+        </header>
+
+        <section class="url-form">
+            <h2>Create a Short URL</h2>
+            <form action="/" method="post">
+                <div class="form-group">
+                    <label for="target_url">Enter a long URL:</label>
+                    <input 
+                        type="text" 
+                        id="target_url" 
+                        name="target_url" 
+                        placeholder="https://example.com/very/long/url" 
+                        value="{{ target_url or '' }}"
+                        required
+                    >
+                    {% if error %}
+                    <div class="error-message">{{ error }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn">Shorten URL</button>
+            </form>
+        </section>
+
+        <section class="url-list">
+            <h2>Your Shortened URLs</h2>
+            {% if urls %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Short URL</th>
+                        <th>Original URL</th>
+                        <th>Clicks</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for url in urls %}
+                    <tr>
+                        <td>
+                            <a href="{{ url.short_url }}" target="_blank" class="short-url">
+                                {{ url.short_url }}
+                            </a>
+                        </td>
+                        <td class="target-url">
+                            <a href="{{ url.target_url }}" target="_blank" title="{{ url.target_url }}">
+                                {{ url.target_url[:50] + '...' if url.target_url|length > 50 else url.target_url }}
+                            </a>
+                        </td>
+                        <td>{{ url.clicks }}</td>
+                        <td class="actions">
+                            <a href="/details/{{ url.id }}" class="btn btn-small">Details</a>
+                            <form action="/delete/{{ url.id }}" method="post" class="inline-form">
+                                <button type="submit" class="btn btn-small btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="no-urls">No URLs have been shortened yet.</p>
+            {% endif %}
+        </section>
+
+        <footer>
+            <p>Built with FastAPI | <a href="/docs" target="_blank">API Documentation</a></p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
